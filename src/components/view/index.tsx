@@ -1,9 +1,8 @@
-import { View as RNView, ViewStyle } from "react-native";
+import { View as RNView, ViewProps, ViewStyle } from "react-native";
 import React from "react";
 import { convertMargin, convertPadding, SpaceMP } from "../../themes";
 
-interface Props {
-  style?: ViewStyle | ViewStyle[];
+interface Props extends ViewProps {
   m?: SpaceMP;
   p?: SpaceMP;
   flex?: number;
@@ -16,20 +15,24 @@ export const View: React.FC<Props> = ({
   p = 0,
   bg = "",
   flex,
-  children,
+  children=<></>,
+  ...viewProps
 }) => {
+
   const st = Array.isArray(style) ? style : [style];
+
   return (
     <RNView
       style={[
-        // styles.container,
         convertMargin(m),
         convertPadding(p),
-        { backgroundColor: bg, flex },
+        bg ? { backgroundColor: bg  } : {},
+        flex ?{flex}:{},
         ...st,
       ]}
+      {...viewProps}
     >
-      <>{children}</>
+      {children}
     </RNView>
   );
 };
