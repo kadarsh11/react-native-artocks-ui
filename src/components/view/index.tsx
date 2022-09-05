@@ -1,4 +1,4 @@
-import { View as RNView, ViewProps, ViewStyle } from "react-native";
+import { View as RNView, ViewProps } from "react-native";
 import React from "react";
 import { convertMargin, convertPadding, SpaceMP } from "../../themes";
 
