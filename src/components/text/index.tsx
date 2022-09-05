@@ -1,10 +1,7 @@
 import { convertMargin, SpaceMP } from "../../themes";
 import React from "react";
 import { StyleSheet, Text as RNText, TextStyle, Platform } from "react-native";
-
-/**
- * https://ivomynttinen.com/blog/ios-design-guidelines
- */
+import type { TextProps } from "react-native-svg";
 
 type Size =
   | "h1"
@@ -18,10 +15,10 @@ type Size =
   | "caption2";
 type FontWeight = "semiBold" | "bold" | "regular";
 
-interface Props extends TextStyle {
+interface Props extends TextProps {
   size?: Size;
+  style?: TextStyle | TextStyle[],
   fw?: FontWeight;
-  style?: TextStyle | TextStyle[];
   m?: SpaceMP;
   color?: string;
   numberOfLines?: number;
@@ -35,7 +32,9 @@ export const Text: React.FC<Props> = ({
   m = 0,
   children = "",
   numberOfLines = 0,
+  ...textProps
 }) => {
+  const st = Array.isArray(style) ? style : [style];
   return (
     <RNText
       style={[
@@ -43,11 +42,12 @@ export const Text: React.FC<Props> = ({
         styles[fw as FontWeight],
         convertMargin(m),
         { color },
-        style,
+        ...st,
       ]}
       numberOfLines={numberOfLines}
+      {...textProps}
     >
-      <>{children}</>
+      {children}
     </RNText>
   );
 };
