@@ -2,10 +2,9 @@ import {
   StyleSheet,
   SafeAreaView,
   ViewStyle,
-  Platform,
 } from "react-native";
 import React from "react";
-import { convertMargin, convertPadding, s, SpaceMP } from "../../themes";
+import { convertMargin, convertPadding, SpaceMP } from "../../themes";
 
 interface Props {
   style?: ViewStyle;
