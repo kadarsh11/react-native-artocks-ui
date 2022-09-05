@@ -18,7 +18,7 @@ interface Props {
 const Screen = ({
   style = {},
   margin = 0,
-  padding = Platform.OS == 'ios' ? 0 : [s.s32, 0, 0, 0],
+  padding = 0,
   bg = "white",
   children = <></>,
 }: Props) => {
