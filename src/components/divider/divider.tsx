@@ -1,7 +1,7 @@
 import { StyleSheet, View, ViewStyle } from "react-native";
 import React from "react";
 import { convertMargin, convertPadding, SpaceMP } from "../../themes";
-import { LinearGradient } from "../gradient";
+// import { LinearGradient } from "../gradient";
 
 interface Props {
   style?: ViewStyle;
@@ -16,19 +16,9 @@ const Divider = ({
   style = {},
   margin = 0,
   padding = 0,
-  isgradient = false,
   color = "#F3F2F8",
 }: Props) => {
-  if (isgradient) {
-    return (
-      <LinearGradient
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0.5 }}
-        style={[styles.gradientdivider]}
-        colors={["#1164B5", "#0C99BA", "#8DB600"]}
-      />
-    );
-  }
+
 
   return (
     <View
