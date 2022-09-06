@@ -1,2 +1,2 @@
-import LinearGradient from "./lineargradient";
-export { LinearGradient };
+// import LinearGradient from "./lineargradient";
+// export { LinearGradient };

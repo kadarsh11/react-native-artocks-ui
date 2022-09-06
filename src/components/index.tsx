@@ -7,4 +7,4 @@ export * from "./text";
 export * from "./avatar";
 export * from "./screen";
 export * from "./view";
-export * from "./gradient";
+// export * from "./gradient";
