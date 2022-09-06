@@ -33,7 +33,8 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "artocks"
   ],
   "repository": "https://github.com/kadarsh11/react-native-artocks-ui",
   "author": "Adarsh Kumar <kadarsh.singh99@gmail.com> (https://github.com/kadarsh11)",
@@ -73,7 +74,6 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-linear-gradient": "^2.6.2",
     "react-native-svg": "^13.1.0"
   },
   "jest": {
