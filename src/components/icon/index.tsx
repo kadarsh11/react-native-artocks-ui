@@ -25,6 +25,12 @@ export const Icon = ({
   height = 20,
   ...uriProps
 }: Props) => {
+  // const [uri, setUri] = React.useState(
+  //   iUri ||
+  //     `https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/${name
+  //       .toLowerCase()
+  //       .replaceAll(" ", "_")}/default/20px.svg`
+  // );
 
   return (
     <View style={style}>
@@ -39,6 +45,11 @@ export const Icon = ({
         viewBox="0 0 20 20"
         width={width}
         height={height}
+        // onError={() =>
+        //   setUri(
+        //     "https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/blur_on/default/20px.svg"
+        //   )
+        // }
         {...uriProps}
       />
     </View>
