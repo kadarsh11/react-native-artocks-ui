@@ -73,6 +73,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
+    "react-native-linear-gradient": "^2.6.2",
     "react-native-svg": "^13.1.0"
   },
   "jest": {

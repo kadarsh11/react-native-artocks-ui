@@ -33,8 +33,5 @@ export default Lineargradient;
 const styles = StyleSheet.create({
   container: {
     height: 2,
-    // borderRadius: 5,
-    // marginTop: s.s12,
-    // flex: 0.45,
   },
 });
