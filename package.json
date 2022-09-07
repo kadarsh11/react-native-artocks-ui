@@ -68,7 +68,7 @@
     "react-native-builder-bob": "^0.18.3",
     "release-it": "^15.0.0",
     "typescript": "^4.5.2",
-    "react-native-svg": "12.3.0"
+    "react-native-svg": "*"
   },
   "resolutions": {
     "@types/react": "17.0.21"
