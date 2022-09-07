@@ -36,12 +36,14 @@ export const Text: React.FC<Props> = ({
 }) => {
   const st = Array.isArray(style) ? style : [style];
   const fontFamily = Artocks.getFontFamily();
-  console.log("fontFamily", fontFamily)
   return (
     <RNText
       style={[
         styles[size as Size],
         styles[fw as FontWeight],
+        fontFamily[fw] ? {
+          fontFamily: fontFamily[fw]
+        } : {},
         convertMargin(m),
         { color },
         ...st,

@@ -12,6 +12,7 @@ class ArtocksManager {
     constructor() {
         if (instance) {
             throw new Error("New instance cannot be created!!");
+            // return "New instance cannot be created!!"
         }
         instance = this;
     }
