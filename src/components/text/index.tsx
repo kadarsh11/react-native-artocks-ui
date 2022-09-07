@@ -1,4 +1,4 @@
-import { convertMargin, SpaceMP } from "../../themes";
+import { Artocks, convertMargin, SpaceMP } from "../../themes";
 import React from "react";
 import { StyleSheet, Text as RNText, TextStyle, Platform } from "react-native";
 import type { TextProps } from "react-native-svg";
@@ -35,6 +35,8 @@ export const Text: React.FC<Props> = ({
   ...textProps
 }) => {
   const st = Array.isArray(style) ? style : [style];
+  const fontFamily = Artocks.getFontFamily();
+  console.log("fontFamily", fontFamily)
   return (
     <RNText
       style={[
