@@ -1,11 +1,11 @@
-import { colors } from "./colors";
-import React, { useContext } from "react";
+import { colors } from './colors';
+import React, { useContext } from 'react';
 import {
   StyleSheet as RNStylesheet,
   ViewStyle,
   TextStyle,
   ImageStyle,
-} from "react-native";
+} from 'react-native';
 
 export const theme = {
   dark: false,
