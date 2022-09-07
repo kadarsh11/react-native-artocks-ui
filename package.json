@@ -77,7 +77,7 @@
     "react": "*",
     "react-native": "*",
     "react-native-safe-area-context": "*",
-    "react-native-svg": "*"
+    "react-native-svg": "^13.1.0"
   },
   "jest": {
     "preset": "react-native",
@@ -157,6 +157,7 @@
     ]
   },
   "dependencies": {
-    "react-native-linear-gradient": "^2.6.2"
+    "react-native-linear-gradient": "^2.6.2",
+    "react-native-svg": "^13.1.0"
   }
 }
