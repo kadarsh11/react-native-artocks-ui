@@ -40,7 +40,7 @@ export const View: React.FC<Props> = ({
         center ? {
           justifyContent: 'center',
           alignItems: 'center'
-        },
+        } : {},
         ...st,
       ]}
       {...viewProps}
