@@ -1,12 +1,16 @@
-import { View as RNView, ViewProps } from "react-native";
+import { Dimensions, View as RNView, ViewProps } from "react-native";
 import React from "react";
 import { convertMargin, convertPadding, SpaceMP } from "../../themes";
+const { width, height } = Dimensions.get('screen');
 
 interface Props extends ViewProps {
   m?: SpaceMP;
   p?: SpaceMP;
   flex?: number;
   bg?: string;
+  heightRatio?: number;
+  widthRatio?: number;
+  center?: boolean
 }
 
 export const View: React.FC<Props> = ({
@@ -15,7 +19,10 @@ export const View: React.FC<Props> = ({
   p = 0,
   bg = "",
   flex,
-  children=<></>,
+  heightRatio,
+  widthRatio,
+  center = false,
+  children = <></>,
   ...viewProps
 }) => {
 
@@ -26,8 +33,14 @@ export const View: React.FC<Props> = ({
       style={[
         convertMargin(m),
         convertPadding(p),
-        bg ? { backgroundColor: bg  } : {},
-        flex ?{flex}:{},
+        flex ? { flex } : {},
+        bg ? { backgroundColor: bg } : {},
+        heightRatio ? { height: height * heightRatio } : {},
+        widthRatio ? { width: width * widthRatio } : {},
+        center ? {
+          justifyContent: 'center',
+          alignItems: 'center'
+        },
         ...st,
       ]}
       {...viewProps}

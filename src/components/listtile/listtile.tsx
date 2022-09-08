@@ -38,7 +38,7 @@ const ListTile = ({
       name={"navigate next"}
     />
   ),
-  onPress = () => {},
+  onPress = () => { },
   textStyle = {},
 }: Props) => {
   return (
@@ -63,7 +63,6 @@ const ListTile = ({
           </Text>
         )}
       </View>
-
       {!!rightIcon && <>{rightIcon}</>}
     </TouchableOpacity>
   );

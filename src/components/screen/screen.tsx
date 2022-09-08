@@ -4,6 +4,7 @@ import {
   Platform,
   StatusBar,
   KeyboardAvoidingView,
+  View as RNView,
 } from "react-native";
 import React from "react";
 import { View } from '../view'
@@ -12,7 +13,6 @@ import type { Props, MyStatusBarProps } from './type'
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
-
 
 const MyStatusBar = ({ backgroundColor, textColor = 'black' }: MyStatusBarProps) => (
   <View style={[styles.statusBar, { backgroundColor: backgroundColor }]}>
@@ -29,12 +29,16 @@ const Screen = ({
   padding = 0,
   bg = "white",
   statusBar = {},
-  withKeyBoardAvodingView = false,
+  config = {
+    withKeyBoardAvodingView: false,
+    withSafeAreaView: true
+  },
   children = <></>,
 }: Props) => {
+  const CustomView = config.withSafeAreaView ? SafeAreaView : RNView;
   return (
     <View flex={1}>
-      <SafeAreaView
+      <CustomView
         style={[
           styles.container,
           convertMargin(margin),
@@ -43,13 +47,13 @@ const Screen = ({
           style,
         ]}
       >
-        {withKeyBoardAvodingView ? <KeyboardAvoidingView
+        {config.withKeyBoardAvodingView ? <KeyboardAvoidingView
           style={styles.container}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <>{children}</>
         </KeyboardAvoidingView> : <>{children}</>}
-      </SafeAreaView>
+      </CustomView>
       <MyStatusBar backgroundColor={statusBar.backgroundColor || bg} />
     </View>
   );

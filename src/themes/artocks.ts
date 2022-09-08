@@ -1,6 +1,7 @@
 let instance: any;
 
-let globalState = {
+export let GlobalConfig = {
+    unit: 8,
     fontFamily: {
         regular: '',
         semiBold: '',
@@ -17,11 +18,11 @@ class ArtocksManager {
         instance = this;
     }
 
-    setFontFamily(fontFamily: typeof globalState.fontFamily) {
-        return globalState.fontFamily = fontFamily;
+    setFontFamily(fontFamily: typeof GlobalConfig.fontFamily) {
+        return GlobalConfig.fontFamily = fontFamily;
     }
     getFontFamily() {
-        return globalState.fontFamily;
+        return GlobalConfig.fontFamily;
     }
 }
 

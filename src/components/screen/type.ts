@@ -7,9 +7,10 @@ export interface Props {
     padding?: SpaceMP;
     bg?: string;
     statusBar?: MyStatusBarProps;
-    statusBarBackgroundColor?: string;
-    withKeyBoardAvodingView?: true | false;
-    statusBarTextColor?: 'white' | 'black';
+    config: {
+        withKeyBoardAvodingView?: true | false;
+        withSafeAreaView?: true | false;
+    }
     children?: React.ReactElement | React.ReactElement[];
 }
 

@@ -8,11 +8,12 @@ import {
 } from "react-native";
 import React from "react";
 import { colors, s } from "../../themes";
-import { convertMargin, convertPadding, SpaceMP } from "../../themes";
+import { convertMargin, convertPadding, SpaceMP, GlobalConfig } from "../../themes";
 
 interface Props {
   title: string;
   bg?: string;
+  radius?: number;
   textColor?: string;
   block?: boolean;
   style?: ViewStyle;
@@ -30,6 +31,7 @@ const Primary = ({
   textStyle = {},
   icon = <></>,
   m = 0,
+  radius = 1,
   p = s.s14,
 }: Props) => {
   return (
@@ -42,6 +44,9 @@ const Primary = ({
         {
           backgroundColor: bg,
         },
+        radius ? {
+          borderRadius: radius * GlobalConfig.unit
+        } : {},
         block && {
           width: "100%",
           alignSelf: "auto",
