@@ -1,46 +1,76 @@
 import {
   StyleSheet,
   SafeAreaView,
-  ViewStyle,
+  Platform,
+  StatusBar,
+  KeyboardAvoidingView,
 } from "react-native";
 import React from "react";
-import { convertMargin, convertPadding, SpaceMP } from "../../themes";
+import { View } from '../view'
+import { convertMargin, convertPadding, } from "../../themes";
+import type { Props, MyStatusBarProps } from './type'
 
-interface Props {
-  style?: ViewStyle;
-  margin?: SpaceMP;
-  padding?: SpaceMP;
-  bg?: string;
-  children?: React.ReactElement | React.ReactElement[];
-}
+const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
+
+
+const MyStatusBar = ({ backgroundColor, textColor = 'black' }: MyStatusBarProps) => (
+  <View style={[styles.statusBar, { backgroundColor: backgroundColor }]}>
+    <SafeAreaView>
+      <StatusBar translucent backgroundColor={backgroundColor} barStyle={textColor == 'black' ? 'dark-content' : 'light-content'} />
+    </SafeAreaView>
+  </View>
+);
+
 
 const Screen = ({
   style = {},
   margin = 0,
   padding = 0,
   bg = "white",
+  statusBar = {},
+  withKeyBoardAvodingView = false,
   children = <></>,
 }: Props) => {
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        convertMargin(margin),
-        convertPadding(padding),
-        { backgroundColor: bg },
-        style,
-      ]}
-    >
-      <>{children}</>
-    </SafeAreaView>
+    <View flex={1}>
+      <SafeAreaView
+        style={[
+          styles.container,
+          convertMargin(margin),
+          convertPadding(padding),
+          { backgroundColor: bg },
+          style,
+        ]}
+      >
+        {withKeyBoardAvodingView ? <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <>{children}</>
+        </KeyboardAvoidingView> : <>{children}</>}
+      </SafeAreaView>
+      <MyStatusBar backgroundColor={statusBar.backgroundColor || bg} />
+    </View>
   );
 };
 
 export default Screen;
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#EFE9E2",
   },
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0
+  },
+  appBar: {
+    backgroundColor: '#79B45D',
+    height: APPBAR_HEIGHT,
+  }
 });
