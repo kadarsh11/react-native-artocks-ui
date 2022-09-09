@@ -3,3 +3,4 @@ export * from "./fonts";
 export * from "./size";
 export * from "./context";
 export * from "./artocks";
+export * from "./utils";

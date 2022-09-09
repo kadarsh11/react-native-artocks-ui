@@ -21,6 +21,7 @@ interface Props {
   icon?: React.ReactNode;
   m?: SpaceMP;
   p?: SpaceMP;
+  onPress?: () => void
 }
 const Primary = ({
   title = "",
@@ -33,9 +34,11 @@ const Primary = ({
   m = 0,
   radius = 1,
   p = s.s14,
+  onPress = () => { },
 }: Props) => {
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={[
         styles.btn,
         convertMargin(m),
@@ -67,6 +70,7 @@ const Primary = ({
 export default Primary;
 
 const styles = StyleSheet.create({
+
   btn: {
     borderRadius: 10,
     backgroundColor: colors.white,
