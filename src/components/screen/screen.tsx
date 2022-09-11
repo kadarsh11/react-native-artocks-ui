@@ -37,7 +37,7 @@ const Screen = ({
 }: Props) => {
   const CustomView = config.withSafeAreaView ? SafeAreaView : RNView;
   return (
-    <View flex={1}>
+    <View flex={1} p={[Platform.OS == 'android' ? (STATUSBAR_HEIGHT || 0) : 0]} >
       <CustomView
         style={[
           styles.container,

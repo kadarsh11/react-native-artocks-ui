@@ -14,6 +14,7 @@ interface Props {
   title: string;
   bg?: string;
   radius?: number;
+  height?: number;
   textColor?: string;
   block?: boolean;
   style?: ViewStyle;
@@ -31,9 +32,10 @@ const Primary = ({
   style = {},
   textStyle = {},
   icon = <></>,
+  height = 42,
   m = 0,
   radius = 1,
-  p = s.s14,
+  p = 0,
   onPress = () => { },
 }: Props) => {
   return (
@@ -43,7 +45,7 @@ const Primary = ({
         styles.btn,
         convertMargin(m),
         convertPadding(p),
-
+        (height && !p) ? { height } : {},
         {
           backgroundColor: bg,
         },
@@ -51,8 +53,7 @@ const Primary = ({
           borderRadius: radius * GlobalConfig.unit
         } : {},
         block && {
-          width: "100%",
-          alignSelf: "auto",
+          alignSelf: "stretch",
         },
         style,
       ]}
@@ -70,7 +71,6 @@ const Primary = ({
 export default Primary;
 
 const styles = StyleSheet.create({
-
   btn: {
     borderRadius: 10,
     backgroundColor: colors.white,

@@ -17,6 +17,7 @@ export const s = {
 
 export type SpaceMP =
   | [number, number, number, number]
+  | [number, number, number]
   | [number, number]
   | [number]
   | number
@@ -28,10 +29,18 @@ export const convertMargin = (margin: SpaceMP) => {
   } else if (typeof margin === "number") {
     return { margin };
   } else if (Array.isArray(margin) && margin.length === 1) {
-    return { margin: margin[0] };
+    return { marginTop: margin[0] };
   } else if (Array.isArray(margin) && margin.length === 2) {
     return { marginHorizontal: margin[0], marginVertical: margin[1] };
-  } else if (Array.isArray(margin) && margin.length === 4) {
+  }
+  else if (Array.isArray(margin) && margin.length === 3) {
+    return {
+      marginTop: margin[0],
+      marginBottom: margin[2],
+      marginRight: margin[1],
+    };
+  }
+  else if (Array.isArray(margin) && margin.length === 4) {
     return {
       marginTop: margin[0],
       marginBottom: margin[2],
@@ -49,10 +58,17 @@ export const convertPadding = (padding: SpaceMP) => {
   } else if (typeof padding === "number") {
     return { padding };
   } else if (Array.isArray(padding) && padding.length === 1) {
-    return { padding: padding[0] };
+    return { paddingTop: padding[0] };
   } else if (Array.isArray(padding) && padding.length === 2) {
     return { paddingHorizontal: padding[0], paddingVertical: padding[1] };
-  } else if (Array.isArray(padding) && padding.length === 4) {
+  } else if (Array.isArray(padding) && padding.length === 3) {
+    return {
+      paddingTop: padding[0],
+      paddingBottom: padding[2],
+      paddingRight: padding[1],
+    };
+  }
+  else if (Array.isArray(padding) && padding.length === 4) {
     return {
       paddingTop: padding[0],
       paddingBottom: padding[2],
