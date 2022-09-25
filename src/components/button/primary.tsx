@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ViewStyle,
   TextStyle,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import { colors, s } from "../../themes";
@@ -17,6 +18,7 @@ interface Props {
   height?: number;
   textColor?: string;
   block?: boolean;
+  loading?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
   icon?: React.ReactNode;
@@ -29,6 +31,7 @@ const Primary = ({
   bg = colors.secondary[1],
   textColor = colors.white,
   block = false,
+  loading = false,
   style = {},
   textStyle = {},
   icon = <></>,
@@ -60,9 +63,9 @@ const Primary = ({
     >
       <View style={{ flexDirection: "row" }}>
         {!!icon && <>{icon}</>}
-        <Text style={[styles.title, { color: textColor }, textStyle]}>
+        {loading ? <ActivityIndicator color={'white'} size='small' /> : <Text style={[styles.title, { color: textColor }, textStyle]}>
           {title}
-        </Text>
+        </Text>}
       </View>
     </TouchableOpacity>
   );
