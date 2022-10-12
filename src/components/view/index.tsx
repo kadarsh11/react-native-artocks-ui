@@ -13,7 +13,7 @@ interface Props extends ViewProps {
   center?: boolean;
   verticalCenter?: boolean;
   horizontalCenter?: boolean;
-  onPress?: () => void
+  onPress?: () => any | Promise<any>;
   bg?: string;
 }
 

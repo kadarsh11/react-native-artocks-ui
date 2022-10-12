@@ -7,11 +7,11 @@ export interface Props {
     padding?: SpaceMP;
     bg?: string;
     statusBar?: MyStatusBarProps;
-    config: {
+    config?: {
         withKeyBoardAvodingView?: true | false;
         withSafeAreaView?: true | false;
     }
-    children?: React.ReactElement | React.ReactElement[];
+    children?: React.ReactNode;
 }
 
 export interface MyStatusBarProps {
