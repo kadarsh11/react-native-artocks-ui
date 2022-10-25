@@ -1,8 +1,13 @@
-import { StyleSheet, TouchableOpacity, View as RNView, ViewProps, ViewStyle } from "react-native";
-import React from "react";
-import { convertMargin, convertPadding, SpaceMP } from "../../themes";
+import React from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View as RNView,
+  ViewStyle,
+} from 'react-native';
+import { convertMargin, convertPadding, SpaceMP } from '../../themes';
 
-interface Props extends ViewProps {
+interface Props {
   style?: ViewStyle | ViewStyle[];
   m?: SpaceMP;
   p?: SpaceMP;
@@ -15,6 +20,7 @@ interface Props extends ViewProps {
   horizontalCenter?: boolean;
   onPress?: () => any | Promise<any>;
   bg?: string;
+  children: React.ReactNode;
 }
 
 export const View: React.FC<Props> = ({
@@ -31,36 +37,34 @@ export const View: React.FC<Props> = ({
   horizontalCenter = false,
   children,
   onPress,
-  ...viewProps
 }) => {
-
   const st = Array.isArray(style) ? style : [style];
-  const UiView = <RNView
-    style={[
-      convertMargin(m),
-      convertPadding(p),
-      flex ? { flex } : {},
-      bg ? { backgroundColor: bg } : {},
-      row ? styles.row : {},
-      radius ? { borderRadius: radius } : {},
-      size ? { height: size, width: size } : {},
-      (verticalCenter && row) || (horizontalCenter && !row) ? styles.alignCenter : {},
-      (verticalCenter && !row) || (horizontalCenter && row) ? styles.justifyCenter : {},
-      center ? styles.center : {},
-      ...st,
-    ]}
-    {...viewProps}
-  >
-    {children}
-  </RNView>
+  const compStyle = [
+    flex ? { flex } : {},
+    convertMargin(m),
+    convertPadding(p),
+    bg ? { backgroundColor: bg } : {},
+    row ? styles.row : {},
+    radius ? { borderRadius: radius } : {},
+    size ? { height: size, width: size } : {},
+    (verticalCenter && row) || (horizontalCenter && !row)
+      ? styles.alignCenter
+      : {},
+    (verticalCenter && !row) || (horizontalCenter && row)
+      ? styles.justifyCenter
+      : {},
+    center ? styles.center : {},
+    ...st,
+  ];
   if (onPress) {
-    return <TouchableOpacity onPress={onPress} >
-      {UiView}
-    </TouchableOpacity>
+    return (
+      <TouchableOpacity style={compStyle} onPress={onPress}>
+        {children}
+      </TouchableOpacity>
+    );
   }
-  return UiView
+  return <RNView style={compStyle}>{children}</RNView>;
 };
-
 
 const styles = StyleSheet.create({
   row: {
@@ -68,10 +72,9 @@ const styles = StyleSheet.create({
   },
   center: { justifyContent: 'center', alignItems: 'center' },
   alignCenter: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
   justifyCenter: {
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });
-

@@ -1,55 +1,47 @@
-import { colors } from "../../themes";
-import React from "react";
-import { View, ViewStyle } from "react-native";
-import { SvgProps, SvgUri } from "react-native-svg";
+import { colors } from '../../themes';
+import React from 'react';
+import { View, ViewStyle } from 'react-native';
+import { SvgProps, SvgUri } from 'react-native-svg';
 
 /**
  * https://fonts.google.com/icons?icon.query=dot&icon.style=Outlined
  */
 
+// const baseUrl =
+//   'https://fonts.gstatic.com/s/i/materialicons/thumb_up/v18/24px.svg';
+
 interface Props extends SvgProps {
   name: string;
   uri?: string | null;
-  pack?: "MaterialIcon";
+  pack?: 'MaterialIcon';
   color?: string;
   style?: ViewStyle;
 }
 
 export const Icon = ({
-  name = "",
-  pack = "MaterialIcon",
+  name = '',
+  pack = 'MaterialIcon',
   color = colors.black[1],
   style = {},
-  uri: iUri = "",
+  uri: iUri = '',
   width = 20,
   height = 20,
   ...uriProps
 }: Props) => {
-  // const [uri, setUri] = React.useState(
-  //   iUri ||
-  //     `https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/${name
-  //       .toLowerCase()
-  //       .replaceAll(" ", "_")}/default/20px.svg`
-  // );
-
   return (
-    <View style={style}>
+    <View pointerEvents="none" style={style}>
       <SvgUri
+        pointerEvents="none"
         fill={color}
         uri={
           iUri ||
-          `https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/${name
+          `https://fonts.gstatic.com/s/i/materialicons/${name
             .toLowerCase()
-            .replace(/\s/g, "_")}/default/20px.svg`
+            .replace(/\s/g, '_')}/v18/24px.svg`
         }
-        viewBox="0 0 20 20"
+        viewBox="0 0 24 24"
         width={width}
         height={height}
-        // onError={() =>
-        //   setUri(
-        //     "https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/blur_on/default/20px.svg"
-        //   )
-        // }
         {...uriProps}
       />
     </View>
