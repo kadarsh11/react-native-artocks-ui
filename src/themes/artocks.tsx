@@ -34,6 +34,6 @@ class ArtocksManager {
 
 const Artocks = Object.freeze(new ArtocksManager());
 
-const ArtocksContext = React.createContext(GlobalConfig);
+// const ArtocksContext = React.createContext(GlobalConfig);
 
 export { Artocks };
