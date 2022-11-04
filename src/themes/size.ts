@@ -15,12 +15,14 @@ export const s = {
   s64: 64,
 };
 
+type SizeConstraint = 4 | 8 | 12 | 16 | 20 | 24 | 28 | 32 | 36
+
 export type SpaceMP =
-  | [number, number, number, number]
-  | [number, number, number]
-  | [number, number]
-  | [number]
-  | number
+  | [SizeConstraint, SizeConstraint, SizeConstraint, SizeConstraint]
+  | [SizeConstraint, SizeConstraint, SizeConstraint]
+  | [SizeConstraint, SizeConstraint]
+  | [SizeConstraint]
+  | SizeConstraint
   | undefined;
 
 export const convertMargin = (margin: SpaceMP) => {
