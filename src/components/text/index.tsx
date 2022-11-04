@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text as RNText, TextStyle } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import type { TextProps } from 'react-native-svg';
-import { Artocks, convertMargin, SpaceMP } from '../../themes';
+import { convertMargin, SpaceMP, useArtocks } from '../../themes';
 
 type Size =
   | 'h1'
@@ -23,6 +23,13 @@ interface Props extends TextProps {
   m?: SpaceMP;
   color?: string;
 }
+let obj: any = {};
+
+function getValue(s: number, width: number) {
+  if (obj[s]) return obj[s];
+  obj[s] = RFValue(s, width);
+  return obj[s];
+}
 
 export const Text: React.FC<Props> = React.memo(
   ({
@@ -35,12 +42,19 @@ export const Text: React.FC<Props> = React.memo(
     ...textProps
   }) => {
     const st = Array.isArray(style) ? style : [style];
-    const fontFamily = Artocks.getFontFamily();
+    const artocks = useArtocks();
+    const fontFamily = artocks.fontFamily;
     return (
       <RNText
         style={[
-          styles[size as Size],
-          styles[fw as FontWeight],
+          // styles[size],
+          {
+            fontSize: getValue(
+              styles[size].fontSize,
+              artocks.screenRefrence.width
+            ),
+          },
+          styles[fw],
           fontFamily[fw]
             ? {
                 fontFamily: fontFamily[fw],

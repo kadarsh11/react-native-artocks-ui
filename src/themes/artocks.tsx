@@ -1,4 +1,4 @@
-// import React from 'react';
+import React, { useContext } from 'react';
 
 let instance: any;
 
@@ -34,6 +34,30 @@ class ArtocksManager {
 
 const Artocks = Object.freeze(new ArtocksManager());
 
-// const ArtocksContext = React.createContext(GlobalConfig);
+export const ArtocksContext = React.createContext(GlobalConfig);
+
+export function useArtocks() {
+  const artocks = useContext(ArtocksContext);
+  return artocks;
+}
+
+export function ArtocksProvider({
+  children,
+  config = {},
+}: {
+  children: React.ReactNode;
+  config: typeof GlobalConfig | {};
+}) {
+  return (
+    <ArtocksContext.Provider
+      value={{
+        ...GlobalConfig,
+        ...config,
+      }}
+    >
+      {children}
+    </ArtocksContext.Provider>
+  );
+}
 
 export { Artocks };
