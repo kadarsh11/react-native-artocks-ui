@@ -6,10 +6,15 @@ import {
   ViewStyle,
   TextStyle,
   ActivityIndicator,
-} from "react-native";
-import React from "react";
-import { colors, s } from "../../themes";
-import { convertMargin, convertPadding, SpaceMP, GlobalConfig } from "../../themes";
+} from 'react-native';
+import React from 'react';
+import { colors, s, useArtocks } from '../../themes';
+import {
+  convertMargin,
+  convertPadding,
+  SpaceMP,
+  GlobalConfig,
+} from '../../themes';
 
 interface Props {
   title: string;
@@ -24,10 +29,10 @@ interface Props {
   icon?: React.ReactNode;
   m?: SpaceMP;
   p?: SpaceMP;
-  onPress?: () => void
+  onPress?: () => void;
 }
 const Primary = ({
-  title = "",
+  title = '',
   bg = colors.secondary[1],
   textColor = colors.white,
   block = false,
@@ -39,33 +44,41 @@ const Primary = ({
   m = 0,
   radius = 1,
   p = 0,
-  onPress = () => { },
+  onPress = () => {},
 }: Props) => {
+  const artocks = useArtocks();
+
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
         styles.btn,
-        convertMargin(m),
-        convertPadding(p),
-        (height && !p) ? { height } : {},
+        convertMargin(m, artocks.screenRefrence.height),
+        convertPadding(p, artocks.screenRefrence.height),
+        height && !p ? { height } : {},
         {
           backgroundColor: bg,
         },
-        radius ? {
-          borderRadius: radius * GlobalConfig.unit
-        } : {},
+        radius
+          ? {
+              borderRadius: radius * GlobalConfig.unit,
+            }
+          : {},
         block && {
-          alignSelf: "stretch",
+          alignSelf: 'stretch',
         },
         style,
       ]}
     >
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: 'row' }}>
         {!!icon && <>{icon}</>}
-        {loading ? <ActivityIndicator color={'white'} size='small' /> : <Text style={[styles.title, { color: textColor }, textStyle]}>
-          {title}
-        </Text>}
+        {loading ? (
+          <ActivityIndicator color={'white'} size="small" />
+        ) : (
+          <Text style={[styles.title, { color: textColor }, textStyle]}>
+            {title}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -77,12 +90,12 @@ const styles = StyleSheet.create({
   btn: {
     borderRadius: 10,
     backgroundColor: colors.white,
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "flex-start",
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-start',
   },
   title: {
     fontSize: s.s14,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });

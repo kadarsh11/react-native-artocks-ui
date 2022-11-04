@@ -1,3 +1,5 @@
+import { RFValue } from 'react-native-responsive-fontsize';
+
 export const s = {
   s2: 2,
   s4: 4,
@@ -17,6 +19,15 @@ export const s = {
 
 type SizeConstraint = 0 | 4 | 8 | 12 | 16 | 20 | 24 | 28 | 32 | 36
 
+let obj: any = {};
+
+function getValue(s: number, height: number) {
+  if (obj[s]) return obj[s];
+  obj[s] = RFValue(s, height);
+  return obj[s];
+}
+
+
 export type SpaceMP =
   | [SizeConstraint, SizeConstraint, SizeConstraint, SizeConstraint]
   | [SizeConstraint, SizeConstraint, SizeConstraint]
@@ -25,57 +36,57 @@ export type SpaceMP =
   | SizeConstraint
   | undefined;
 
-export const convertMargin = (margin: SpaceMP = 0) => {
+export function convertMargin(margin: SpaceMP, height: number = 800) {
   if (!margin) {
     return {};
   } else if (typeof margin === "number") {
-    return { margin };
+    return { margin: getValue(margin, height) };
   } else if (Array.isArray(margin) && margin.length === 1) {
-    return { marginTop: margin[0] };
+    return { marginTop: getValue(margin[0], height) };
   } else if (Array.isArray(margin) && margin.length === 2) {
-    return { marginHorizontal: margin[0], marginVertical: margin[1] };
+    return { marginHorizontal: getValue(margin[0], height), marginVertical: getValue(margin[1], height) };
   }
   else if (Array.isArray(margin) && margin.length === 3) {
     return {
-      marginTop: margin[0],
-      marginBottom: margin[2],
-      marginRight: margin[1],
+      marginTop: getValue(margin[0], height),
+      marginBottom: getValue(margin[2], height),
+      marginRight: getValue(margin[1], height),
     };
   }
   else if (Array.isArray(margin) && margin.length === 4) {
     return {
-      marginTop: margin[0],
-      marginBottom: margin[2],
-      marginRight: margin[1],
-      marginLeft: margin[3],
+      marginTop: getValue(margin[0], height),
+      marginBottom: getValue(margin[2], height),
+      marginRight: getValue(margin[1], height),
+      marginLeft: getValue(margin[3], height),
     };
   } else {
     return {};
   }
 };
 
-export const convertPadding = (padding: SpaceMP) => {
+export function convertPadding(padding: SpaceMP, height: number = 800) {
   if (!padding) {
     return {};
   } else if (typeof padding === "number") {
-    return { padding };
+    return { padding: getValue(padding, height) };
   } else if (Array.isArray(padding) && padding.length === 1) {
-    return { paddingTop: padding[0] };
+    return { paddingTop: getValue(padding[0], height) };
   } else if (Array.isArray(padding) && padding.length === 2) {
-    return { paddingHorizontal: padding[0], paddingVertical: padding[1] };
+    return { paddingHorizontal: getValue(padding[0], height), paddingVertical: getValue(padding[1], height) };
   } else if (Array.isArray(padding) && padding.length === 3) {
     return {
-      paddingTop: padding[0],
-      paddingBottom: padding[2],
-      paddingRight: padding[1],
+      paddingTop: getValue(padding[0], height),
+      paddingBottom: getValue(padding[2], height),
+      paddingRight: getValue(padding[1], height),
     };
   }
   else if (Array.isArray(padding) && padding.length === 4) {
     return {
-      paddingTop: padding[0],
-      paddingBottom: padding[2],
-      paddingRight: padding[1],
-      paddingLeft: padding[3],
+      paddingTop: getValue(padding[0], height),
+      paddingBottom: getValue(padding[2], height),
+      paddingRight: getValue(padding[1], height),
+      paddingLeft: getValue(padding[3], height),
     };
   } else {
     return {};

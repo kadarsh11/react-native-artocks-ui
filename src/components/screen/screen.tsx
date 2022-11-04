@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { View } from '../view';
-import { convertMargin, convertPadding } from '../../themes';
+import { convertMargin, convertPadding, useArtocks } from '../../themes';
 import type { Props, MyStatusBarProps } from './type';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
@@ -29,11 +29,11 @@ const MyStatusBar = ({
   </View>
 );
 
-const p = [Platform.OS == 'android' ? STATUSBAR_HEIGHT || 0 : 0];
+const defaultPadding = [Platform.OS == 'android' ? STATUSBAR_HEIGHT || 0 : 0];
 const Screen = ({
   style = {},
-  margin,
-  padding,
+  m,
+  p,
   bg = 'white',
   statusBar = {},
   config = {
@@ -43,13 +43,14 @@ const Screen = ({
   children = <></>,
 }: Props) => {
   const CustomView = config.withSafeAreaView ? SafeAreaView : RNView;
+  const artocks = useArtocks();
   return (
-    <View flex={1} p={p as any}>
+    <View flex={1} p={defaultPadding as any}>
       <CustomView
         style={[
           styles.container,
-          convertMargin(margin),
-          convertPadding(padding),
+          convertMargin(m, artocks.screenRefrence.height),
+          convertPadding(p, artocks.screenRefrence.height),
           { backgroundColor: bg },
           style,
         ]}

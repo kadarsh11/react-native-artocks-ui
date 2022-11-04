@@ -1,31 +1,31 @@
-import { StyleSheet, View, ViewStyle } from "react-native";
-import React from "react";
-import { convertMargin, convertPadding, SpaceMP } from "../../themes";
+import { StyleSheet, View, ViewStyle } from 'react-native';
+import React from 'react';
+import {
+  convertMargin,
+  convertPadding,
+  SpaceMP,
+  useArtocks,
+} from '../../themes';
 // import { LinearGradient } from "../gradient";
 
 interface Props {
   style?: ViewStyle;
-  margin?: SpaceMP;
-  padding?: SpaceMP;
+  m?: SpaceMP;
+  p?: SpaceMP;
   bg?: string;
   isgradient?: boolean;
   color?: string;
 }
 
-const Divider = ({
-  style = {},
-  margin = 0,
-  padding = 0,
-  color = "#F3F2F8",
-}: Props) => {
-
+const Divider = ({ style = {}, m = 0, p = 0, color = '#F3F2F8' }: Props) => {
+  const artocks = useArtocks();
 
   return (
     <View
       style={[
         styles.divider,
-        convertMargin(margin),
-        convertPadding(padding),
+        convertMargin(m, artocks.screenRefrence.height),
+        convertPadding(p, artocks.screenRefrence.height),
         style,
         { borderColor: color },
       ]}

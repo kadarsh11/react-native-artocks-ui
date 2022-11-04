@@ -6,7 +6,12 @@ import {
   View as RNView,
   ViewStyle,
 } from 'react-native';
-import { convertMargin, convertPadding, SpaceMP } from '../../themes';
+import {
+  convertMargin,
+  convertPadding,
+  SpaceMP,
+  useArtocks,
+} from '../../themes';
 
 interface Props {
   style?: ViewStyle | ViewStyle[];
@@ -41,10 +46,11 @@ export const View: React.FC<Props> = React.memo(
     onPress,
   }) => {
     const st = Array.isArray(style) ? style : [style];
+    const artocks = useArtocks();
     const compStyle = [
       flex ? { flex } : {},
-      m ? convertMargin(m) : {},
-      p ? convertPadding(p) : {},
+      m ? convertMargin(m, artocks.screenRefrence.height) : {},
+      p ? convertPadding(p, artocks.screenRefrence.height) : {},
       bg ? { backgroundColor: bg } : {},
       row ? styles.row : {},
       radius ? { borderRadius: radius } : {},

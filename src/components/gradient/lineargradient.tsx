@@ -20,7 +20,7 @@
 //   return (
 //     <LinearGradient
 //       start={{ x: 0, y: 0.5 }}
-//       style={[styles.container, convertMargin(m), convertPadding(p), ...st]}
+//       style={[styles.container, convertMargin(m,artocks.screenRefrence.height), convertPadding(p,artocks.screenRefrence.height), ...st]}
 //       {...restProps}
 //     >
 //       {children}

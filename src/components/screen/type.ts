@@ -3,8 +3,8 @@ import type { SpaceMP } from "src/themes";
 
 export interface Props {
     style?: ViewStyle;
-    margin?: SpaceMP;
-    padding?: SpaceMP;
+    m?: SpaceMP;
+    p?: SpaceMP;
     bg?: string;
     statusBar?: MyStatusBarProps;
     config?: {

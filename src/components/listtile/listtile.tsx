@@ -1,4 +1,4 @@
-import { colors, fonts, s } from '../../themes';
+import { colors, fonts, s, useArtocks } from '../../themes';
 import React from 'react';
 import {
   StyleSheet,
@@ -41,9 +41,16 @@ const ListTile = ({
   onPress = () => {},
   textStyle = {},
 }: Props) => {
+  const artocks = useArtocks();
+
   return (
     <TouchableOpacity
-      style={[styles.card, style, convertMargin(m), convertPadding(p)]}
+      style={[
+        styles.card,
+        style,
+        convertMargin(m, artocks.screenRefrence.height),
+        convertPadding(p, artocks.screenRefrence.height),
+      ]}
       onPress={onPress}
     >
       <View style={[styles.leftCircle]}>

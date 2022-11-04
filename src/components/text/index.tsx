@@ -25,9 +25,9 @@ interface Props extends TextProps {
 }
 let obj: any = {};
 
-function getValue(s: number, width: number) {
+function getValue(s: number, height: number) {
   if (obj[s]) return obj[s];
-  obj[s] = RFValue(s, width);
+  obj[s] = RFValue(s, height);
   return obj[s];
 }
 
@@ -43,28 +43,25 @@ export const Text: React.FC<Props> = React.memo(
   }) => {
     const st = Array.isArray(style) ? style : [style];
     const artocks = useArtocks();
-    const fontFamily = artocks.fontFamily;
     return (
       <RNText
         style={[
-          // styles[size],
           {
             fontSize: getValue(
               styles[size].fontSize,
-              artocks.screenRefrence.width
+              artocks.screenRefrence.height
             ),
           },
           styles[fw],
-          fontFamily[fw]
+          artocks.fontFamily[fw]
             ? {
-                fontFamily: fontFamily[fw],
+                fontFamily: artocks.fontFamily[fw],
               }
             : {},
-          m ? convertMargin(m) : {},
+          m ? convertMargin(m, artocks.screenRefrence.height) : {},
           { color },
           ...st,
         ]}
-        // numberOfLines={numberOfLines}
         {...textProps}
       >
         {children}
@@ -75,37 +72,37 @@ export const Text: React.FC<Props> = React.memo(
 
 const styles = StyleSheet.create({
   h1: {
-    fontSize: RFValue(32),
+    fontSize: 32,
   },
   h2: {
-    fontSize: RFValue(28),
+    fontSize: 28,
   },
   h3: {
-    fontSize: RFValue(24),
+    fontSize: 24,
   },
   h4: {
-    fontSize: RFValue(20),
+    fontSize: 20,
   },
   p1: {
-    fontSize: RFValue(18),
+    fontSize: 18,
   },
   p2: {
-    fontSize: RFValue(16),
+    fontSize: 16,
   },
   p3: {
-    fontSize: RFValue(14),
+    fontSize: 14,
   },
   caption1: {
-    fontSize: RFValue(12),
+    fontSize: 12,
   },
   caption2: {
-    fontSize: RFValue(10),
+    fontSize: 10,
   },
   regular: {
     fontWeight: '400',
   },
   semiBold: {
-    fontWeight: '500',
+    fontWeight: '600',
   },
   bold: {
     fontWeight: 'bold',

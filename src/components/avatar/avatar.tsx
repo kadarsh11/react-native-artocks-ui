@@ -1,6 +1,12 @@
-import { colors, convertMargin, convertPadding, SpaceMP } from "../../themes";
-import React from "react";
-import { Image, StyleSheet, View, ViewStyle } from "react-native";
+import {
+  colors,
+  convertMargin,
+  convertPadding,
+  SpaceMP,
+  useArtocks,
+} from '../../themes';
+import React from 'react';
+import { Image, StyleSheet, View, ViewStyle } from 'react-native';
 
 interface Props {
   children?: React.ReactElement;
@@ -18,12 +24,14 @@ export const Avatar = ({
   size = 50,
   radius = 1,
   style = {},
-  url = "",
+  url = '',
   backgroundColor = colors.white,
   m,
   p,
 }: Props) => {
   const st = Array.isArray(style) ? style : [style];
+  const artocks = useArtocks();
+
   return (
     <View
       style={[
@@ -34,8 +42,8 @@ export const Avatar = ({
           height: size,
           borderRadius: size * (radius / 2),
         },
-        convertMargin(m),
-        convertPadding(p),
+        convertMargin(m, artocks.screenRefrence.height),
+        convertPadding(p, artocks.screenRefrence.height),
         ...st,
       ]}
     >
@@ -61,8 +69,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.black[0.1],
     backgroundColor: colors.white,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
 });
