@@ -43,8 +43,8 @@ export const View: React.FC<Props> = React.memo(
     const st = Array.isArray(style) ? style : [style];
     const compStyle = [
       flex ? { flex } : {},
-      m && convertMargin(m),
-      p && convertPadding(p),
+      m ? convertMargin(m) : {},
+      p ? convertPadding(p) : {},
       bg ? { backgroundColor: bg } : {},
       row ? styles.row : {},
       radius ? { borderRadius: radius } : {},

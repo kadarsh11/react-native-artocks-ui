@@ -3,12 +3,12 @@ import {
   TouchableOpacity,
   ViewStyle,
   TextStyle,
-} from "react-native";
-import React from "react";
-import {  s, fonts } from "../../themes";
-import { Icon } from "../icon";
-import { Text } from "../text";
-import { View } from "../view";
+} from 'react-native';
+import React from 'react';
+import { s, fonts } from '../../themes';
+import { Icon } from '../icon';
+import { Text } from '../text';
+import { View } from '../view';
 
 interface Props {
   title: string;
@@ -19,14 +19,14 @@ interface Props {
 }
 
 const Header = ({
-  title = "",
+  title = '',
   style = {},
   leftIcon = <Icon name="Arrow Back Ios" />,
   textStyle = {},
   rightIcon = <></>,
 }: Props) => {
   return (
-    <View m={[s.s16, 0]} style={[styles.header, style]}>
+    <View m={[16, 0]} style={[styles.header, style]}>
       <TouchableOpacity style={styles.touchOpacity}>
         <>{leftIcon}</>
       </TouchableOpacity>
@@ -45,16 +45,16 @@ export default Header;
 const styles = StyleSheet.create({
   title: {
     fontSize: fonts.f20,
-    fontWeight: "bold",
-    alignSelf: "center",
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
   header: {
-    justifyContent: "space-between",
-    flexDirection: "row",
-    alignItems: "center",
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   touchOpacity: {
-    alignSelf: "center",
+    alignSelf: 'center',
     paddingVertical: s.s8,
     paddingHorizontal: s.s16,
   },

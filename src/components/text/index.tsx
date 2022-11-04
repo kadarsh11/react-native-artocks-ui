@@ -1,8 +1,8 @@
-import { Artocks, convertMargin, SpaceMP } from '../../themes';
 import React from 'react';
+import { StyleSheet, Text as RNText, TextStyle } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { StyleSheet, Text as RNText, TextStyle, Platform } from 'react-native';
 import type { TextProps } from 'react-native-svg';
+import { Artocks, convertMargin, SpaceMP } from '../../themes';
 
 type Size =
   | 'h1'
@@ -22,7 +22,6 @@ interface Props extends TextProps {
   fw?: FontWeight;
   m?: SpaceMP;
   color?: string;
-  numberOfLines?: number;
 }
 
 export const Text: React.FC<Props> = React.memo(
@@ -31,9 +30,8 @@ export const Text: React.FC<Props> = React.memo(
     fw = 'regular',
     color = '#000000',
     style = {},
-    m = 0,
+    m,
     children = '',
-    numberOfLines = 0,
     ...textProps
   }) => {
     const st = Array.isArray(style) ? style : [style];
@@ -48,11 +46,11 @@ export const Text: React.FC<Props> = React.memo(
                 fontFamily: fontFamily[fw],
               }
             : {},
-          convertMargin(m),
+          m ? convertMargin(m) : {},
           { color },
           ...st,
         ]}
-        numberOfLines={numberOfLines}
+        // numberOfLines={numberOfLines}
         {...textProps}
       >
         {children}

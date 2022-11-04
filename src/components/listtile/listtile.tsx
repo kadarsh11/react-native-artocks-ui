@@ -1,15 +1,15 @@
-import { colors, fonts, s } from "../../themes";
-import React from "react";
+import { colors, fonts, s } from '../../themes';
+import React from 'react';
 import {
   StyleSheet,
   TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
-} from "react-native";
-import { Icon } from "../icon";
-import { Text } from "../text";
-import { convertMargin, convertPadding, SpaceMP } from "../../themes";
+} from 'react-native';
+import { Icon } from '../icon';
+import { Text } from '../text';
+import { convertMargin, convertPadding, SpaceMP } from '../../themes';
 
 interface Props {
   title: string;
@@ -24,21 +24,21 @@ interface Props {
 }
 
 const ListTile = ({
-  title = "",
-  subtitle = "",
+  title = '',
+  subtitle = '',
   style = {},
-  m = 0,
-  p = 0,
+  m,
+  p,
   leftIcon = <></>,
   rightIcon = (
     <Icon
       fill={colors.black[0.75]}
       width={35}
       height={35}
-      name={"navigate next"}
+      name={'navigate next'}
     />
   ),
-  onPress = () => { },
+  onPress = () => {},
   textStyle = {},
 }: Props) => {
   return (
@@ -50,15 +50,11 @@ const ListTile = ({
         <>{leftIcon}</>
       </View>
       <View style={{ flex: 1, paddingHorizontal: s.s12 }}>
-        <Text size={"p1"} fw="bold" style={textStyle}>
+        <Text size={'p1'} fw="bold" style={textStyle}>
           {title}
         </Text>
         {!!subtitle && (
-          <Text
-            m={[s.s2, 0, 0, 0]}
-            color={colors.black[0.25]}
-            size={"caption1"}
-          >
+          <Text m={[4]} color={colors.black[0.25]} size={'caption1'}>
             {subtitle}
           </Text>
         )}
@@ -73,13 +69,13 @@ export default ListTile;
 const styles = StyleSheet.create({
   title: {
     fontSize: fonts.f16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   card: {
-    justifyContent: "space-between",
-    flexDirection: "row",
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     paddingVertical: s.s6,
-    alignItems: "center",
+    alignItems: 'center',
   },
 
   leftCircle: {
@@ -88,8 +84,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 2,
     borderColor: colors.white,
-    backgroundColor: "#F7F6F9",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#F7F6F9',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

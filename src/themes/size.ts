@@ -15,7 +15,7 @@ export const s = {
   s64: 64,
 };
 
-type SizeConstraint = 4 | 8 | 12 | 16 | 20 | 24 | 28 | 32 | 36
+type SizeConstraint = 0 | 4 | 8 | 12 | 16 | 20 | 24 | 28 | 32 | 36
 
 export type SpaceMP =
   | [SizeConstraint, SizeConstraint, SizeConstraint, SizeConstraint]
@@ -25,7 +25,7 @@ export type SpaceMP =
   | SizeConstraint
   | undefined;
 
-export const convertMargin = (margin: SpaceMP) => {
+export const convertMargin = (margin: SpaceMP = 0) => {
   if (!margin) {
     return {};
   } else if (typeof margin === "number") {
