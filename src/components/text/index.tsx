@@ -31,44 +31,42 @@ function getValue(s: number, height: number) {
   return obj[s];
 }
 
-export const Text: React.FC<Props> = React.memo(
-  ({
-    size = 'p2',
-    fw = 'regular',
-    color = '#000000',
-    style = {},
-    m,
-    children = '',
-    ...textProps
-  }) => {
-    const st = Array.isArray(style) ? style : [style];
-    const artocks = useArtocks();
-    return (
-      <RNText
-        style={[
-          {
-            fontSize: getValue(
-              styles[size].fontSize,
-              artocks.screenRefrence.height
-            ),
-          },
-          styles[fw],
-          artocks.fontFamily[fw]
-            ? {
-                fontFamily: artocks.fontFamily[fw],
-              }
-            : {},
-          m ? convertMargin(m, artocks.screenRefrence.height) : {},
-          { color },
-          ...st,
-        ]}
-        {...textProps}
-      >
-        {children}
-      </RNText>
-    );
-  }
-);
+export const Text: React.FC<Props> = ({
+  size = 'p2',
+  fw = 'regular',
+  color = '#000000',
+  style = {},
+  m,
+  children = '',
+  ...textProps
+}) => {
+  const st = Array.isArray(style) ? style : [style];
+  const artocks = useArtocks();
+  return (
+    <RNText
+      style={[
+        {
+          fontSize: getValue(
+            styles[size].fontSize,
+            artocks.screenRefrence.height
+          ),
+        },
+        styles[fw],
+        artocks.fontFamily[fw]
+          ? {
+              fontFamily: artocks.fontFamily[fw],
+            }
+          : {},
+        m ? convertMargin(m, artocks.screenRefrence.height) : {},
+        { color },
+        ...st,
+      ]}
+      {...textProps}
+    >
+      {children}
+    </RNText>
+  );
+};
 
 const styles = StyleSheet.create({
   h1: {
